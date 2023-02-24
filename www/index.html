@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Kanban ToDo List">
+    <meta name="author" content="Adrià Mata, Àlex López i Enric Rached">
+    <meta name="keywords" content="Kanban, ToDo List, to-do list, To do doing done">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="shortcut icon" href="./imgs/icona.png" type="image/x-icon">
+    <script src="./app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <title>KANBAN REMAKE</title>
+</head>
+<body onload="inicialitzacio()">
+    <!-- capçalera -->
+    <header class="p-3 sticky-top"> 
+        <h1 class="display-6 text-center text-uppercase fw-bolder">Kanban 2.0</h1>
+    </header>
+    <!-- divisió titol columnes -->
+    <div class="container-fluid text-center p-5">
+        <div class="row row-cols-1 row-cols-lg-3 g-1">
+            <div class="col todo order-6 order-sm-6 order-lg-6">
+                <div class="p-3 border bg-warning text-dark fs-3 fw-bold">TO DO</div>
+            </div>
+            <div class="col doing order-2 order-sm-2 order-lg-1">
+                <div class="p-3 border bg-warning text-dark fs-3 fw-bold">DOING</div>
+            </div>
+            <div class="col done order-4 order-sm-4 order-lg-2">
+                <div class="p-3 border bg-warning text-dark fs-3 fw-bold">DONE</div>
+            </div>
+            <!-- divisió contingut columnes -->
+            <div class="col task-todo order-1 order-sm-1 order-lg-3" id="todo">  
+
+            </div>
+            <div class="col task-doing order-3 order-sm-3 order-lg-4" id="doing">
+
+            </div>
+            <div class="col task-done order-5 order-sm-5 order-lg-5" id="done">
+            </div>
+        </div>
+    </div>
+    <div>
+        <span onclick="newElement()" class="btn-flotante shadow-none">ADD</span>
+    </div>
+</body>
+</html>
+
+
+
+
+<!--
+
+
+    PRIMERA VERSIÓ CONTENIDOR
+    <div class="container-fluid text-center"> 
+        <div class="p-1 border border-warning border-2 bg-transparent text-light" id="todo">
+            <div class="row align-items-center justify-content-lg-center">
+                <div class="llista col col-lg-4">
+                    <p class="text-uppercase fw-bold fs-3 mt-2 text-dark shadow-none">TODO</p>
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+
+    VERSIÓ NETA DE LES NOTES
+
+<div class="tasca row align-items-start justify-content-lg-center">
+    <div class="col col-lg-3 bg-transparent border border-warning border-4" style="height: 160px;" >
+        <p id="num" hidden>comptador</p> 
+        <p id="titol" class="text-capitalize text-break fw-bold fs-5" contentEditable="false" onclick = "this.contentEditable = true;">titol 1</p>
+        <p id="contingut" class="text-capitalize text-break fw-bold fs-5" contentEditable="false" onclick = "this.contentEditable = true;">descripció 1</p>
+    </div>
+    <div class="opcions col col-lg-1 bg-transparent border border-warning border-4" style="height: 160px;">
+        <div class="save"> 
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-save-fill text-success mt-2" viewBox="0 0 16 16">
+                <path d="M8.5 1.5A1.5 1.5 0 0 1 10 0h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h6c-.314.418-.5.937-.5 1.5v7.793L4.854 6.646a.5.5 0 1 0-.708.708l3.5 3.5a.5.5 0 0 0 .708 0l3.5-3.5a.5.5 0 0 0-.708-.708L8.5 9.293V1.5z"/>
+            </svg>
+        </div>
+        <div class="del"> 
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-trash-fill text-danger mt-2" viewBox="0 0 16 16">
+                <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+            </svg>
+        </div>
+        <div class="move"> 
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
+  <path d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1z"/>
+</svg>
+</div>
+<div class="prio"> 
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+</svg>
+</div>
+    </div>
+</div> -->
