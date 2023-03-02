@@ -1,3 +1,4 @@
+
 const tascaModel = require("./models/tasca");
 const { response } = require('express');
 
@@ -22,8 +23,8 @@ module.exports = (app) => {
         const tasques = new tascaModel(req.body);
         
         try {
-            await tasques.save(); // Això retorna la última tasca.
-            const tasq = await tascaModel.find({});   // Demano la colecció actualitzada per retornar-la.
+            await tasques.save();
+            const tasq = await tascaModel.find({});
             let aux =res.status(200).send(tasq);
             console.log(aux._id);
             
@@ -47,8 +48,8 @@ module.exports = (app) => {
             tasca.dataIni = req.body.dataIni;
             tasca.dataFin = req.body.dataFin;
 
-            await tasca.save(); // Això retorna la última tasca.
-            const tasq = await tascaModel.find({});   // Demano la colecció actualitzada per retornar-la.
+            await tasca.save();
+            const tasq = await tascaModel.find({});
             res.status(200).send(tasq);
         } catch (error) {
             res.status(500).send(error);
@@ -61,7 +62,7 @@ module.exports = (app) => {
 
         const tasca = await tascaModel.deleteOne({_id: req.params.id});
         try {
-            const tasq = await tascaModel.find({});   // Demano la colecció actualitzada per retornar-la.
+            const tasq = await tascaModel.find({});
             res.status(200).send(tasq);
         } catch (error) {
             res.status(500).send(error);
