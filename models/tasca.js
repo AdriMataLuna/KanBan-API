@@ -29,19 +29,7 @@ const TascaSchema = new mongoose.Schema({
     versionKey : false
 });
 
-//declarem una 'conts' Tasques a la que li assignem el model de tasques amb l'esquema fet previament
+/* declarem una estructura tasca i l'exportem per poder-la cridar */
 const Tasques = mongoose.model("tasques", TascaSchema);
 
 module.exports = Tasques;
-
-
-
-/* [{
-  "titol":"Exemple tasca",
-  "responsable":"Adria",
-  "contingut":"Exemple d'una tasca",
-  "dataIni": "",
-  "dataFin": "",
-  "prioritat": "",
-  "position":"todo"
-}] */
